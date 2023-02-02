@@ -1,0 +1,237 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+
+	<lightning-card title="">
+
+		<!--------- Show Opted-In User Error ------------>
+		<template if:true={showErrorOptedIn}>
+			<div class="errorHeader slds-grid slds-gutters">
+				<div class="slds-col slds-align_absolute-center">
+					<lightning-icon icon-name="utility:error" class="errorIcon" size="medium"> </lightning-icon>
+				</div>
+				<div class="slds-col slds-align_absolute-center" style="font-size:13px;"> 
+					<span> {contactFirstName} has not opted-in to SMS yet. </span> 
+				</div>
+				<div class="slds-col slds-align_absolute-center">
+					<span><a style="color:white;font-size:13px;border-bottom:1px solid white;"
+							onclick={resendWelcomeMessage}>
+							Resend Welcome
+						</a></span>
+				</div>
+			</div>
+		</template>
+
+		<!--------- Show Opted-Out User Error ------------>
+		<template if:true={showErrorOptedOut}>
+			<div class="errorHeader slds-grid slds-gutters">
+				<div class="slds-col" style="font-size:13px;">
+					<span> User Opted Out from Texting</span>
+				</div>
+				<div class="slds-col">
+					<span><a style="color:white;font-size:13px;border-bottom:1px solid white;float:right;"
+							onclick={showOptOutModel}>
+							More info
+						</a></span>
+				</div>
+			</div>
+		</template>
+
+		<!-- More info modal start -->
+		<template if:true={isShowOptOutModel}>
+			<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+				aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+				<div class="slds-modal__container">
+
+					<!-- modal header start -->
+					<header class="slds-modal__header">
+						<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+							title="Close" onclick={hideOptoutModal}>
+							<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+								size="small"></lightning-icon>
+							<span class="slds-assistive-text">Close</span>
+						</button>
+						<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"> 
+							<b>User Opted Out </b>
+						</h2>
+					</header>
+
+					<!-- modal body start -->
+					<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+						<p class="slds-align_absolute-center">User has opted out from texting.</p>
+						<p class="slds-align_absolute-center"> This user has opted not to receive SMS messages through
+							the Hi Marley system.</p>
+					</div>
+
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</template>
+		<!-- modal end -->
+
+		<div style={backgroundColor}>
+
+			<!-- Display Chatting History -->
+			<template if:true={showchatLogs}>
+				<section role="log" class="slds-chat slds-chat_past">
+					<div data-scroll-area class="slds-scrollable_y" style="height:350px;width:auto;">
+
+						<!-- Opted-In Details Section -->
+						<template if:true={showOptInFlag}>
+							<div class="slds-align_absolute-center slds-m-around_large">
+								<span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">
+									<svg class="slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+										<use
+											xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#check">
+										</use>
+									</svg>
+								</span>
+								<template if:true={showOptInDate}>
+								    <p><b>{contactName}</b> opted-in • {optInDate} • {optInTime} </p>
+								</template>
+								<template if:false={showOptInDate}>
+									<p><b>{contactName}</b> is opted-in to this case.</p>
+								</template>
+							</div>
+						</template>
+
+						<!-- Chat Section -->
+						<ul data-id="chatList" class="slds-chat-list">
+							<!-- Dynamic list will be printed here --->
+						</ul>
+
+						<!-- Today Chat Section -->
+						<template if:true={showTodayChats}>
+							<ul data-id="todayChatList" class="slds-chat-list slds-m-around_medium">
+								<!-- Dynamic list will be printed here -->
+								<span class="slds-align_absolute-center"> <b style="font-size: 16px;"> Today </b>
+								</span>
+							</ul>
+						</template>
+
+					</div>
+				</section>
+			</template>
+
+			<!-- Show No Messages - Case Not Created in HM -->
+			<template if:true={showErrorNoHMCase}>
+				<div class="chatSection slds-align_absolute-center" style="height:350px;">
+					<p><img class="slds-align_absolute-center" src={hmlogo} width="25%" style="margin-bottom:7%;">
+					<lightning-button class="slds-m-top_large slds-align_absolute-center" variant="brand"
+						disabled={disableStartConversation} name="Start SMS Conversation" label="Start SMS Conversation"
+						onclick={createCaseInHM}>
+					</lightning-button>	
+					<i class="slds-align_absolute-center wrapped-content slds-m-top_medium" style="font-size:12px;width:80%;">
+					    By starting this conversation, you will send an opt-in message 
+					</i>
+					<i class="slds-align_absolute-center wrapped-content slds-m-top_xx-small" style="font-size:12px;width:80%;">
+					  to this customer if they are not already opted in.
+					</i>
+					</p>					
+				</div>				
+
+			</template>
+
+			<!-- Show No Messages Error -->
+			<template if:true={showErrorNoChats}>
+				<div class="chatSection slds-align_absolute-center" style="height:350px;">
+					<p><img class="slds-align_absolute-center" src={hmlogo} width="25%" style="margin-bottom:7%;">
+						<b style="font-size:18px;" class="slds-align_absolute-center"> No Messages</b>
+						<template if:true={showErrorOptedIn}>
+							<span class="slds-align_absolute-center slds-m-top_xx-small"> 
+								Conversation will be enabled once the customer is Opted-In. </span>
+						</template>
+						<template if:true={showErrorOptedOut}>
+							<span class="slds-align_absolute-center slds-m-top_xx-small"> 
+								Conversation will be enabled once the customer is Opted-In. </span>
+						</template>
+						<template if:false={showErrorOptedIn}>
+							<template if:false={showErrorOptedOut}>
+								<span class="slds-align_absolute-center slds-m-top_xx-small">
+									Write a message below to start this conversation. </span>
+							</template>
+							</template>
+						<!--template if:false={showErrorOptedOut}>
+							<template if:false={showErrorOptedIn}>
+								<span class="slds-align_absolute-center slds-m-top_xx-small">
+									Write a message below to start this conversation. </span>
+							</template>
+						</template-->
+					</p>
+				</div>
+			</template>
+
+			<!--------- Type Message to Send ------------>
+			<div class="slds-p-around_small" style="background-color:#f3f2f2;border-bottom:1px solid #c9c7c5">
+				<lightning-textarea value={inputMessage} label="" variant="label-hidden" class="validate"
+					maxlength="1400" placeholder="Write a message..." onchange={getMessage} disabled={disableSend}
+					required>
+				</lightning-textarea>
+			</div>
+		</div>
+
+		<!--------- Footer - Send Button & Message Template Button ------------>
+		<div class="slds-grid slds-gutters" style="background-color:white;height:50px;">
+
+			<!-- Message Template Icon -->
+			<div class="slds-col slds-size_1-of-12">
+				<button class="slds-button slds-button_icon slds-button_icon-border slds-m-top_small"
+					disabled={disableSend} title="Message Templates" onclick={selectSMSTemplate}>
+					<svg class="slds-button__icon" aria-hidden="true">
+						<use xlink:href="/apexpages/slds/latest/assets/icons/utility-sprite/svg/symbols.svg#copy"></use>
+					</svg>
+					<span class="slds-assistive-text">Message Templates</span>
+				</button>
+			</div>
+
+			<!-- Text Language Selection Dropdown -->
+			<div class="slds-col slds-size_6-of-12">
+				<lightning-combobox class="slds-m-top_small" style="width:60%;" name="language" label=""
+					value={textLanguage} options={options} onchange={selectionChangeHandler} variant="label-hidden"
+					disabled={disableSend}></lightning-combobox>
+			</div>
+
+			<!-- Send Message Button -->
+			<div class="slds-col slds-col slds-size_5-of-12">
+				<lightning-button class="slds-m-top_small slds-float_right" variant="brand" type="send" name="send"
+					icon-name="utility:send" icon-position="right" label="Send" onclick={sendMessage}
+					disabled={disableSend}>
+				</lightning-button>
+			</div>
+		</div>
+
+		<!-- Powered by Text 
+		<div class="slds-p-around_small">
+			<span class="slds-float_right"> powered by <img src={hmlogo} width="10%"> </span>
+		</div>
+	    -->
+
+		<!-- modal start - Select Message Template -->
+		<template if:true={isShowModal}>
+			<div role="dialog" class="slds-modal slds-fade-in-open slds-align_absolute-center" style="width:100%;">
+				<!--div class="slds-modal__container smsTemplateSection"
+					style="text-align:center;background-color: #dfd7d7;padding-top: 5rem;">
+					<header class="slds-modal__header paddingEdit"-->
+				<div class="AddEditModal" style="text-align: center">
+					<div class="slds-modal__header">
+						<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+							title="Close" onclick={hideModalBox}>
+							<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+								size="small"></lightning-icon>
+							<span class="slds-assistive-text">Close</span>
+						</button>
+						<h2 class="slds-text-heading_medium slds-hyphenate">Message Templates</h2>
+					</div>
+					<div class="slds-modal__footer" style="background-color: #ffffff;padding-top:10px;"><!-- display: inline-block;-->
+						<!--/header-->
+						<!-- Call SMS Template Selection component -->
+						<c-h-Mselect-S-M-S-Template record-id={recordId} onpass={selectedTemplateMessage}>
+						</c-h-Mselect-S-M-S-Template>
+					</div>
+				</div>
+			</div>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</template>
+		<!-- modal end - Select Message Template -->
+	</lightning-card>
+</template>

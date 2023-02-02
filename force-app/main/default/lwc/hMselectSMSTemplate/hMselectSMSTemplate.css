@@ -1,0 +1,53 @@
+.slds-form-element__control {
+    clear: left;
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: #ffffff;
+}
+/*
+.demo-only {
+    height: 100px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background: #c0baba;
+    position: sticky;
+    bottom: 0;
+}*/
+/*
+.textpadding {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.3rem;
+    text-align: left;
+    overflow: hidden;
+}
+
+.textpadding1 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: left;
+}
+*/
+.slds-visual-picker_vertical .slds-visual-picker__figure, .slds-visual-picker_vertical .slds-visual-picker__body {
+    height: auto;
+}
+
+.slds-visual-picker_vertical .slds-visual-picker__figure {
+    padding: var(--lwc-spacingMedium,0.5rem);
+}
+
+.slds-modal__footer {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.slds-visual-picker input:checked~label .slds-visual-picker__text:after {
+    border-style: hidden;
+}

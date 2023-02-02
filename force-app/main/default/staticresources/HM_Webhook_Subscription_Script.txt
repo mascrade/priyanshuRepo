@@ -1,0 +1,101 @@
+//Get all Case fields mapping details
+List<HM_Register_to_Webhook_Events__c> lstWebhookRegisterDetails = HM_Register_to_Webhook_Events__c.getAll().values(); 
+
+//Get Case Integration details from HM_Integration Metadata
+HM_Register_Webhook__mdt objWebhookDetails = [Select Id, DeveloperName, HM_client_id__c, HM_client_secret__c,
+											  HM_Endpoint_Url__c, HM_API_Key__c,
+                                              HM_grant_type__c, HM_password__c, HM_token_url__c, HM_type__c, HM_username__c
+                                              from HM_Register_Webhook__mdt 
+                                              where DeveloperName = 'HM_Webhook_Authorization'];
+
+List<UpdateWrapper> lstUpdateWrapper = new List<UpdateWrapper>();
+
+if(lstWebhookRegisterDetails != null && lstWebhookRegisterDetails.size() > 0 && objWebhookDetails != null){
+    for(HM_Register_to_Webhook_Events__c objEndPointDetails : lstWebhookRegisterDetails){
+        
+        //create a wrapper instance for updating case details
+        UpdateWrapper objUW = new UpdateWrapper();
+        
+        Http http = new Http();
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(objWebhookDetails.HM_Endpoint_Url__c);
+        request.setMethod('POST');
+        request.setHeader('Content-Type', 'application/json;charset=UTF-8;');
+        request.setHeader('x-api-key', objWebhookDetails.HM_API_Key__c);
+        
+        //Create Request Body for Webhook Event Subscription
+         objUW.sRequestBody = '{'+
+            '"EVENT_ID": ' + objEndPointDetails.HM_EVENT_ID__c + ','+
+            '"HTTP_POST_ADDRESS": "' + objEndPointDetails.HM_HTTP_POST_ADDRESS__c  + '",'+
+            '"HEADERS": {'+
+				'"Authorization": {'+
+				'"type": "' + objWebhookDetails.HM_type__c + '",' +
+				'"grant_type": "' + objWebhookDetails.HM_grant_type__c + '",' +
+				'"client_id": "' + objWebhookDetails.HM_client_id__c + '",' +
+				'"client_secret": "' + objWebhookDetails.HM_client_secret__c + '",'+
+				'"token_url": "' + objWebhookDetails.HM_token_url__c + '",'+
+				'"username": "' + objWebhookDetails.HM_username__c + '",'+
+				'"password": "' + objWebhookDetails.HM_password__c +
+				'"}'+
+            '}'+
+        '}';          
+        
+        // Set the body as a JSON object
+        request.setBody(objUW.sRequestBody);
+        
+        HttpResponse response = http.send(request);
+        System.debug('Status Code : ' + response.getStatusCode());
+        
+        objUW.sStatusCode = string.valueOf(response.getStatusCode());
+        objUW.sResponseBody = response.getBody();
+        
+        //Check the status Code and Create Log Entry
+        if (objUW.sStatusCode == '200' || objUW.sStatusCode == '201') {
+            
+            Map<String, Object> mapHMResponse = (Map<String, Object>)JSON.deserializeUntyped(objUW.sResponseBody);
+            system.debug('mapHMResponse ==> ' + mapHMResponse);
+            
+            if(mapHMResponse != null && mapHMResponse.size() > 0){
+                objUW.sSubscription_ID = (string)mapHMResponse.get('SUBSCRIPTION_ID');
+            }
+            else{
+                objUW.sSubscription_ID = '';
+            }         
+           
+        }
+        else {
+           objUW.bSuccess = false;
+        }
+        
+        lstUpdateWrapper.add(objUW);
+    }   
+}
+
+if(lstUpdateWrapper.size() > 0){
+    for(UpdateWrapper objUW : lstUpdateWrapper){
+        if(objUW.bSuccess){
+            //Create a Success Log Entry record
+            HM_Integration_Helper.create_HMLogs('Subscribe to Webhook Events', 'Success', objUW.sStatusCode, 'Outbound', objUW.sRequestBody, objUW.sResponseBody, objUW.sSubscription_ID);
+        }
+        else{
+            //Create a Error Log Entry record
+            HM_Integration_Helper.create_HMLogs('Subscribe to Webhook Events', 'Error', objUW.sStatusCode, 'Outbound', objUW.sRequestBody, objUW.sResponseBody, '');
+        }
+    }
+}
+  
+public class UpdateWrapper{
+    public string sRequestBody;
+    public boolean bSuccess; 
+    public string sResponseBody;
+    public string sStatusCode;
+    public string sSubscription_ID;
+    
+    public UpdateWrapper(){
+        sRequestBody = '';
+        bSuccess = true;
+        sResponseBody = '';
+        sStatusCode = '';
+        sSubscription_ID = '';
+    }
+}

@@ -1,0 +1,129 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+	<lightning-spinner if:true={isLoading} alternative-text="Loading..." size="medium"></lightning-spinner>
+
+	<div class="slds-page-header">
+		<div class="slds-page-header__row">
+			<div class="slds-page-header__col-title">
+				<div class="slds-media">
+					<div class="slds-media__figure">
+						<lightning-icon icon-name="standard:email_chatter" alternative-text="Message Template"
+							title="Message"></lightning-icon>
+					</div>
+					<div class="slds-media__body">
+						<div class="slds-page-header__name">
+							<div class="slds-page-header__name-title">
+								<h1>
+									<span>SET UP</span>
+									<span class="slds-page-header__title slds-truncate" title="Recently Viewed">Add/Edit
+                                        SMS Templates</span>
+								</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="slds-page-header__col-actions">
+				<div class="slds-page-header__controls">
+					<div class="slds-page-header__control">
+						<ul class="slds-button-group-list">
+							<li>
+								<button class="slds-button slds-button_neutral"
+                                    onclick={handleCreateNewTemplatebutton}>Create New Template</button>
+							</li>
+							<li>
+								<button class="slds-button slds-button_neutral">Import</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slds-page-header__row">
+			<div class="slds-page-header__col-meta">
+				<lightning-input class="slds-p-left_medium" type="checkbox" label={checkboxLabel}
+					onchange={handleCheckboxChange} checked={checkboxchecked}></lightning-input>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<article>
+		<template if:true={isdata}>
+			<div class="slds-scrollable_y divBorder">
+				<lightning-datatable column-widths-mode="auto" key-field="id" data={lstAllTemplates} columns={columns}
+					hide-checkbox-column="true" show-row-number-column=true onrowaction={TemplateRowAction}>
+				</lightning-datatable>
+			</div>
+		</template>
+
+		<template if:false={isdata}>
+			<lightning-datatable key-field="id" data={lstAllTemplates} columns={columns} hide-checkbox-column="true">
+			</lightning-datatable>
+			<div class="slds-align_absolute-center">No existing templates to show</div>
+		</template>
+	</article>
+
+	<template if:true={isDeleteModalOpen}>
+		<!-- Delete Confirmation Box LWC starts here -->
+		<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+			aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-align_absolute-center"
+			style="max-width: 70%;max-height:200px">
+			<div class="slds-modal__container">
+				<!-- style="max-height:200px"-->
+				<!-- Modal/Popup Box LWC header here -->
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={CancelDelete}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+					<h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+				</header>
+				<!-- Modal/Popup Box LWC body starts here -->
+				<div class="center">
+					<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+						<p><b>Are you sure you want to delete this SMS Template ?
+                            </b></p>
+					</div>
+				</div>
+				<!-- Modal/Popup Box LWC footer starts here -->
+				<footer class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" onclick={CancelDelete} title="No">Cancel</button>
+					<button class="slds-button slds-button_brand" onclick={ConfirmedYesDelete} title="Yes">Yes</button>
+				</footer>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+
+	<!--Opens a new Pop up modal for Adding/Editing SMS Template-->
+	<template if:true={isAddEditModalOpen}>
+		<div role="dialog" aria-modal="true" style="height:500px;width:auto"
+			class="slds-modal slds-fade-in-open slds-align_absolute-center">
+			<div class="AddEditModal">
+				<div class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={CancelNewCreation}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+					<!--h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">{PopUpHeader}</h2-->
+					<c-H-M-S-M-S-Template-Creation-V2 sms-temp-id-to-edit={smsTemplateIdToEdit}
+						to-save-temp-name={smsTemplateName} to-save-temp-active={smsTemplateIsActive}
+						to-save-temp-body={smsTemplateBodyForEdit} pop-up-header={PopUpHeader} onpass={FireRefreshApex}
+						sms-temp-created-by={smsTempCreatedBy} sms-temp-created-by-date={smsTempCreatedByDate}
+						sms-temp-last-modified-by={smsTempLastModifiedBy}
+						sms-temp-last-modified-by-date={smsTempLastModifiedByDate} form-header={FormHeader}
+						sms-temp-created-by-time={smsTempCreatedByTime}
+						sms-temp-last-modified-by-time={smsTempLastModifiedByTime}
+						sms-temp-objectapi={smsTempObjectName} contact-api={contactLookupName}></c-H-M-S-M-S-Template-Creation-V2>
+				</div>
+			</div>
+		</div>
+		<div class="slds-backdrop slds-backdrop_open"></div>
+	</template>
+
+</template>

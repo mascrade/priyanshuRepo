@@ -1,0 +1,34 @@
+string sReqBody = '';
+string sStatusCode, sResponseBody;
+string subscriptionId = 'Add Subscription ID here!';
+
+Http http = new Http();
+HttpRequest request = new HttpRequest();
+request.setMethod('DELETE');
+request.setEndpoint('test_URL' + subscriptionId);												  
+request.setHeader('Content-Type', 'application/json;charset=UTF-8;');
+request.setHeader('x-api-key', 'test_API_Key');
+
+// Set the body as a JSON object
+request.setBody(sReqBody);
+
+//Send HTTP Request
+HttpResponse response = http.send(request);
+
+System.debug('Status Code : ' + response.getStatusCode());
+
+sStatusCode = response.getStatusCode();
+sResponseBody = response.getBody();
+
+//Get Response Code
+if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
+
+    //Create a Success Log Entry record
+    HM_Integration_Helper.create_HMLogs('Unsubscribe to Webhook Events', 'Success', sStatusCode, 'Outbound', sReqBody, sResponseBody, subscriptionId);
+  
+} 
+else {
+  
+    //Create a Error Log Entry record
+    HM_Integration_Helper.create_HMLogs('Unsubscribe to Webhook Events', 'Error', sStatusCode, 'Outbound', sReqBody, sResponseBody, subscriptionId);
+}

@@ -1,0 +1,143 @@
+//Custom Setting : HM Message Fields Mapping(Inbound)
+List<HM_Message_Fields_Mapping_Inbound__c> lstMsgFieldInbd = new List<HM_Message_Fields_Mapping_Inbound__c>();
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd1 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'archived',
+    HM_SF_Field__c = 'HM_Archived__c',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'caseData');
+lstMsgFieldInbd.add(objMsgFieldInbd1);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd2 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'brand',
+    HM_SF_Field__c = 'HM_Brand__c',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'caseData');
+lstMsgFieldInbd.add(objMsgFieldInbd2);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd3 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'caseType',
+    HM_SF_Field__c = 'HM_Case_Type__c',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'caseData');
+lstMsgFieldInbd.add(objMsgFieldInbd3);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd4 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'channelSource',
+    HM_SF_Field__c = 'HM_Channel_Source__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd4);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd5 = new HM_Message_Fields_Mapping_Inbound__c(
+    Name = 'claimNumber',
+    HM_SF_Field__c = 'HM_Claim_Number__c',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'caseData');
+lstMsgFieldInbd.add(objMsgFieldInbd5);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd6 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'ContactId',
+    HM_SF_Field__c = 'ContactId',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'customer');
+lstMsgFieldInbd.add(objMsgFieldInbd6);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd7 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'createdAt',
+    HM_SF_Field__c = 'HM_Created_At__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd7);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd8 = new HM_Message_Fields_Mapping_Inbound__c(
+    Name = 'customerId',
+    HM_SF_Field__c = 'HM_User_Id__c',
+	HM_SF_Object_Name__c = 'Contact',
+	HM_JSON_Sub_Object_Name__c = 'customer');
+lstMsgFieldInbd.add(objMsgFieldInbd8);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd9 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'data',
+    HM_SF_Field__c = 'HM_Message_Data__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd9);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd10 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'dateFormatted',
+    HM_SF_Field__c = 'HM_Date_Formatted__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd10);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd11 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'dateOfLoss',
+    HM_SF_Field__c = 'HM_Date_of_Loss__c',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'caseData');
+lstMsgFieldInbd.add(objMsgFieldInbd11);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd12 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'firstName',
+    HM_SF_Field__c = 'HM_Author_First_Name__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'profile');
+lstMsgFieldInbd.add(objMsgFieldInbd12);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd13 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'formatting',
+    HM_SF_Field__c = 'HM_Formatting__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd13);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd14 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'id',
+    HM_SF_Field__c = 'HM_Case_Id__c',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'caseData');
+lstMsgFieldInbd.add(objMsgFieldInbd14);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd15 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'lastName',
+    HM_SF_Field__c = 'HM_Author_Last_Name__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'profile');
+lstMsgFieldInbd.add(objMsgFieldInbd15);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd16 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'messageId',
+    HM_SF_Field__c = 'HM_Message_Id__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd16);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd17 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'state',
+    HM_SF_Field__c = 'HM_Case_Status__c',
+	HM_SF_Object_Name__c = 'Case',
+	HM_JSON_Sub_Object_Name__c = 'state');
+lstMsgFieldInbd.add(objMsgFieldInbd17);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd18 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'timeFormatted',
+    HM_SF_Field__c = 'HM_Time_Formatted__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd18);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd19 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = 'type',
+    HM_SF_Field__c = 'HM_Message_Type__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'messages');
+lstMsgFieldInbd.add(objMsgFieldInbd19);
+
+HM_Message_Fields_Mapping_Inbound__c objMsgFieldInbd20 = new HM_Message_Fields_Mapping_Inbound__c(
+	Name = '_id',
+    HM_SF_Field__c = 'HM_Author_Id__c',
+	HM_SF_Object_Name__c = 'Chat Log',
+	HM_JSON_Sub_Object_Name__c = 'author');
+lstMsgFieldInbd.add(objMsgFieldInbd20);
+upsert lstMsgFieldInbd Name;

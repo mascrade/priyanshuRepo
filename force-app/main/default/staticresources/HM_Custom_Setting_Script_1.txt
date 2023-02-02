@@ -1,0 +1,140 @@
+//Custom Setting : HM Branding
+List<HM_Branding__c> lstBranding = new List<HM_Branding__c>();
+	HM_Branding__c objBranding = new HM_Branding__c(
+	Name = 'Branding',    
+	HM_Enable_Branding__c = true);  
+	lstBranding.add(objBranding);
+upsert lstBranding Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM Case Privacy        
+List<HM_Case_Privacy__c> lstCasePrivacy = new List<HM_Case_Privacy__c>();
+HM_Case_Privacy__c objCasePrivacy = new HM_Case_Privacy__c(
+	Name = 'privacy',
+    HM_Privacy__c = 'public');
+lstCasePrivacy.add(objCasePrivacy);
+upsert lstCasePrivacy Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM Integration Logs
+List<HM_Integration_Logs__c> lstIntegLog = new List<HM_Integration_Logs__c>();
+HM_Integration_Logs__c objIntegLog = new HM_Integration_Logs__c(
+	Name = 'HM Logs',
+    Enable_HM_Logs__c = true);
+lstIntegLog.add(objIntegLog);       
+upsert lstIntegLog Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM Msg Template Id        
+List<HM_Message_Template_Id__c> lstMsgTemplateId = new List<HM_Message_Template_Id__c>();
+HM_Message_Template_Id__c objMsgTemplateId = new HM_Message_Template_Id__c(
+    Name = 'hi marley template',
+    Value__c = 'FULL_MESSAGE');
+lstMsgTemplateId.add(objMsgTemplateId);
+upsert lstMsgTemplateId Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM Send Survey Message on Case Closure        
+List<HM_Send_Survey_Message_on_Case_Closure__c> lstSurveyMsg = new List<HM_Send_Survey_Message_on_Case_Closure__c>();
+HM_Send_Survey_Message_on_Case_Closure__c objSurveyMsg = new HM_Send_Survey_Message_on_Case_Closure__c(
+    Name = 'Send Survey Message',
+    HM_Send_Survey_Message__c = true);
+lstSurveyMsg.add(objSurveyMsg);        
+upsert lstSurveyMsg Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM Sync Users with HM Operators                
+List<HM_Sync_Users_with_HM_Operators__c> lstSyncWithOperator = new List<HM_Sync_Users_with_HM_Operators__c>();
+HM_Sync_Users_with_HM_Operators__c objSyncWithOperator = new HM_Sync_Users_with_HM_Operators__c(
+    Name = 'Sync SF Users with HM Operators',
+    HM_Sync_SF_Users_with_HM_Operators__c = true);
+lstSyncWithOperator.add(objSyncWithOperator);
+upsert lstSyncWithOperator Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM User Mobile Field Mapping                        
+List<HM_User_Mobile_Field_Mapping__c> lstUserMobile = new List<HM_User_Mobile_Field_Mapping__c>();
+HM_User_Mobile_Field_Mapping__c objUserMobile = new HM_User_Mobile_Field_Mapping__c(
+    Name = 'mobile',
+    HM_SF_Field__c = 'MobilePhone');
+lstUserMobile.add(objUserMobile);        
+upsert lstUserMobile Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM User Mobile Field Mapping                        
+List<HM_Download_Case_Transcript__c> lstDownloadTranscript = new List<HM_Download_Case_Transcript__c>();
+HM_Download_Case_Transcript__c objDownloadTranscript = new HM_Download_Case_Transcript__c(
+    Name = 'Case Transcript Download',
+    Enable_Case_Transcript_Download__c = true);
+lstDownloadTranscript.add(objDownloadTranscript);        
+upsert lstDownloadTranscript Name;
+
+/**************************************************************************************************************************/
+
+//Custom Setting : HM Register to Webhook Events
+//Replace  **My Domain**  with your Org Domain (given in Admin Setup Guide)
+             
+List<HM_Register_to_Webhook_Events__c> lstWebhkEvent = new List<HM_Register_to_Webhook_Events__c>();
+
+HM_Register_to_Webhook_Events__c objWebhkEvent1 = new HM_Register_to_Webhook_Events__c(
+    Name = 'Case Closed',
+    HM_EVENT_ID__c = '10',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/HM_Case_Close_reOpen_in_SF');
+lstWebhkEvent.add(objWebhkEvent1);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent2 = new HM_Register_to_Webhook_Events__c(
+    Name = 'Case Created',
+    HM_EVENT_ID__c = '20',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/HM_Create_CaseIn_SF');
+lstWebhkEvent.add(objWebhkEvent2);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent3 = new HM_Register_to_Webhook_Events__c(
+    Name = 'Case Note Created',
+    HM_EVENT_ID__c = '16',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/CreateNoteService');
+lstWebhkEvent.add(objWebhkEvent3);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent4 = new HM_Register_to_Webhook_Events__c(
+    Name = 'Case Reopened',
+    HM_EVENT_ID__c = '18',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/HM_Case_Close_reOpen_in_SF');
+lstWebhkEvent.add(objWebhkEvent4);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent5 = new HM_Register_to_Webhook_Events__c(
+	Name = 'Message Received or Sent in Hi Marley',
+    HM_EVENT_ID__c = '14',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/TextMessageService');
+lstWebhkEvent.add(objWebhkEvent5);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent6 = new HM_Register_to_Webhook_Events__c(
+    Name = 'User Opt In',
+    HM_EVENT_ID__c = '2',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/setOptIn');
+lstWebhkEvent.add(objWebhkEvent6);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent7 = new HM_Register_to_Webhook_Events__c(
+    Name = 'User Opt Out',
+    HM_EVENT_ID__c = '1',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/setOptOut');
+lstWebhkEvent.add(objWebhkEvent7);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent8 = new HM_Register_to_Webhook_Events__c(
+    Name = 'Case Note Updated',
+    HM_EVENT_ID__c = '17',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/DeleteNoteService');
+lstWebhkEvent.add(objWebhkEvent8);
+
+HM_Register_to_Webhook_Events__c objWebhkEvent9 = new HM_Register_to_Webhook_Events__c(
+    Name = 'Inbound Chatbot Flow Complete',
+    HM_EVENT_ID__c = '19',
+    HM_HTTP_POST_ADDRESS__c = '**My Domain**/services/apexrest/HM_UpdateCaseAfterChatbotFinished');
+lstWebhkEvent.add(objWebhkEvent9);
+
+upsert lstWebhkEvent Name;

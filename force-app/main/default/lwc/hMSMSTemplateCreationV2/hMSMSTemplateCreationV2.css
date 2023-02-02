@@ -1,0 +1,129 @@
+.slds-modal__container {
+    margin: 1rem;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    width: 200%;
+    /*max-width: 80rem;
+    min-width: 60rem;*/
+    padding-left: 20px;
+}
+.serviceBox {
+    text-align: left; 
+    padding-left:15px;
+    padding-top:10px;
+    padding-right:15px;
+   /*background-color: #F3F3F3;  */
+}
+
+div.serviceBox{
+    height: 70px;
+    padding-top: 2px;
+    /*border-bottom: 1px solid rgb(155, 150, 150);*/
+}
+
+.serviceBox1 {
+    display:inline-block;
+    width:68%;
+}
+
+.serviceBox2 {
+    display:inline-block;
+    width:32%;
+    padding-left:2%;
+}
+
+.serviceBoxgoat {
+    text-align: left; 
+    padding-left:15px;
+    padding-top:10px;
+    padding-right:15px;
+   /* background-color: #F3F3F3;  */
+}
+
+div.serviceBoxgoat{
+    height: 120px;
+    padding-top: 2px;
+    /*border-bottom: 1px solid rgb(155, 150, 150);*/
+}
+
+.serviceBoxgoat1 {
+    display:inline-block;
+    width:100%;
+    height:100px;
+}
+
+.slds-textarea{
+    --slds-c-textarea-sizing-min-height :100px;
+}
+
+input {
+    line-height: normal;
+    height: 32px;
+    border-color: rgb(201, 201, 201);
+    border-style: solid;
+    border-width: thin 1px;
+    border-radius: 0.25rem;
+}
+
+.apiCopyButton{
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.apiInputDiv{
+    padding-right: 0;
+}
+
+.serviceBoxBottom {
+    text-align: left; 
+    padding-left:4px;
+    padding-top:10px;
+    padding-right:15px;
+   /*background-color: #F3F3F3;  */
+}
+
+div.serviceBoxBottom{
+    /*height: 80px;*/
+    padding-top: 35px;
+    /*border-bottom: 1px solid rgb(155, 150, 150);*/
+}
+
+.serviceBoxBottom1 {
+    display:inline-block;
+    width:50%;
+}
+
+.serviceBoxBottom1a {
+    display:inline-block;
+    width:20%;
+    /*padding-left:1%;*/
+}
+
+.serviceBoxBottom2 {
+    display:inline-block;
+    width:50%;
+    /*padding-left:10%;*/
+}
+
+.serviceBoxBottom2a {
+    display:inline-block;
+    width:20%;
+    /*padding-left:2%;*/
+}
+
+.slds-box_x-small, .slds-box--x-small {
+    color: #020202;
+    padding: 0;
+    /*padding: var(--lwc-spacingXSmall,0.5rem);*/
+    border-color: white;
+}
+
+.slds-size_1-of-5, .slds-size--1-of-5 {
+    width: 10%;
+}
+
+.slds-size_1-of-3, .slds-size--1-of-3 {
+    width: 20%;
+}

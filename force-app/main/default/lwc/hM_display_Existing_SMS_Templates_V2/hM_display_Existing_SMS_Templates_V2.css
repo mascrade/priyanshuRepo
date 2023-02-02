@@ -1,0 +1,54 @@
+.divBorder {
+    border-style: solid;
+    border-color: #dfdbdb;
+    border-radius: 0.3rem;
+    height: 420px;
+    width:100%;
+}
+
+.divpaddingTop {
+    padding-top: 10px;
+}
+
+.divBorderChildlwc {
+    border-style: solid;
+    border-color: #f1eded;
+    border-radius: 0.3rem;
+}
+
+.slds-input {
+    width: 50%;
+}
+
+.slds-card {
+    background-color: #f3f3f3;
+}
+
+.center {
+    text-align: center;
+}
+
+.datatableHeight {
+    height: auto;
+    width: auto;
+}
+
+.spacingCard {
+    --sds-c-card-header-spacing-block-end: 0;
+    --sds-c-card-body-spacing-block-start: 0;
+}
+
+.slds-size_small{
+    max-width: 150rem !important;
+    width: 100% !important;
+    height:450px;
+}
+
+div.AddEditModal{
+    max-width: 1000rem !important;
+    width: 65% !important;
+}
+
+.slds-modal__header {
+padding: 0.5rem;
+}

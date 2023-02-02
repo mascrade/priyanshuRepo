@@ -1,0 +1,186 @@
+//Custom Setting : HM Case Fields Mapping (Inbound)
+List<HM_Case_Fields_Mapping_Inbound__c> lstCaseInbound = new List<HM_Case_Fields_Mapping_Inbound__c>();
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound1 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'archived',    
+	HM_API_sub_Object_Name__c = 'caseData',
+	HM_SF_Field__c = 'HM_Archived__c',
+	HM_SF_Object_Name__c = 'Case');
+lstCaseInbound.add(objCaseInbound1);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound2 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'brand',    
+	HM_API_sub_Object_Name__c = 'caseData',
+	HM_SF_Field__c = 'HM_Brand__c',
+	HM_SF_Object_Name__c = 'Case');
+lstCaseInbound.add(objCaseInbound2);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound3 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'caseType',    
+	HM_API_sub_Object_Name__c = 'caseType',
+	HM_SF_Field__c = 'HM_Case_Type__c',
+	HM_SF_Object_Name__c = 'Case');
+lstCaseInbound.add(objCaseInbound3);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound4 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'claimNumber',    
+	HM_API_sub_Object_Name__c = 'caseData',
+	HM_SF_Field__c = 'HM_Claim_Number__c',
+	HM_SF_Object_Name__c = 'Case');
+lstCaseInbound.add(objCaseInbound4);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound5 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'ContactId',    
+	HM_API_sub_Object_Name__c = 'customer',
+	HM_SF_Field__c = 'ContactId',
+	HM_SF_Object_Name__c = 'Case');
+lstCaseInbound.add(objCaseInbound5);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound6 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'dateOfLoss',  
+	HM_SF_Field__c = 'HM_Date_of_Loss__c', 
+	HM_SF_Object_Name__c = 'Case',    
+	HM_API_sub_Object_Name__c = 'caseData');
+lstCaseInbound.add(objCaseInbound6);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound7 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'id',  
+	HM_SF_Field__c = 'HM_Case_Id__c', 
+	HM_SF_Object_Name__c = 'Case',    
+	HM_API_sub_Object_Name__c = 'caseData');
+lstCaseInbound.add(objCaseInbound7);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound8 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'privacy',  
+	HM_SF_Field__c = 'HM_Case_Privacy__c', 
+	HM_SF_Object_Name__c = 'Case',    
+	HM_API_sub_Object_Name__c = 'privacy');
+lstCaseInbound.add(objCaseInbound8);
+
+HM_Case_Fields_Mapping_Inbound__c objCaseInbound9 = new HM_Case_Fields_Mapping_Inbound__c(
+	Name = 'state',  
+	HM_SF_Field__c = 'HM_Case_Status__c', 
+	HM_SF_Object_Name__c = 'Case',    
+	HM_API_sub_Object_Name__c = 'state');
+lstCaseInbound.add(objCaseInbound9);
+upsert lstCaseInbound Name;
+
+
+/**************************************************************************************************************************/
+
+
+//Custom Setting : HM Case Fields Mapping (Outbound)        
+List<HM_Case_Fields_Mapping__c> lstCaseOutbound = new List<HM_Case_Fields_Mapping__c>();
+HM_Case_Fields_Mapping__c objCaseOutbound1 = new HM_Case_Fields_Mapping__c(
+	Name = 'caseData.brand',
+    HM_API_Sub_Object_Name__c = 'caseData',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'HM_Brand__c');
+lstCaseOutbound.add(objCaseOutbound1);
+
+
+HM_Case_Fields_Mapping__c objCaseOutbound2 = new HM_Case_Fields_Mapping__c(
+	Name = 'caseData.claimNumber',
+    HM_API_Sub_Object_Name__c = 'caseData',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'HM_Claim_Number__c');
+lstCaseOutbound.add(objCaseOutbound2);
+
+
+HM_Case_Fields_Mapping__c objCaseOutbound3 = new HM_Case_Fields_Mapping__c(
+	Name = 'caseData.dateOfLoss',
+    HM_API_Sub_Object_Name__c = 'caseData',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'HM_Date_of_Loss__c');
+lstCaseOutbound.add(objCaseOutbound3);
+
+HM_Case_Fields_Mapping__c objCaseOutbound4 = new HM_Case_Fields_Mapping__c(
+	Name = 'caseData.policyNumber',
+    HM_API_Sub_Object_Name__c = 'caseData',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'HM_Policy_Number__c');
+lstCaseOutbound.add(objCaseOutbound4);
+
+HM_Case_Fields_Mapping__c objCaseOutbound5 = new HM_Case_Fields_Mapping__c(
+	Name = 'caseData.statusDescription',
+    HM_API_Sub_Object_Name__c = 'caseData',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'Status');
+lstCaseOutbound.add(objCaseOutbound5);
+
+HM_Case_Fields_Mapping__c objCaseOutbound6 = new HM_Case_Fields_Mapping__c(
+	Name = 'caseType',
+    HM_API_Sub_Object_Name__c = '',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'HM_Case_Type__c');
+lstCaseOutbound.add(objCaseOutbound6);
+
+HM_Case_Fields_Mapping__c objCaseOutbound7 = new HM_Case_Fields_Mapping__c(
+	Name = 'customer.email',
+    HM_API_Sub_Object_Name__c = 'customer',
+    HM_SF_Object__c = 'Contact',
+    HM_SF_Field__c = 'Contact.Email');
+lstCaseOutbound.add(objCaseOutbound7);
+
+HM_Case_Fields_Mapping__c objCaseOutbound8 = new HM_Case_Fields_Mapping__c(
+	Name = 'customer.first',
+    HM_API_Sub_Object_Name__c = 'customer',
+    HM_SF_Object__c = 'Contact',
+    HM_SF_Field__c = 'Contact.FirstName');
+lstCaseOutbound.add(objCaseOutbound8);
+
+HM_Case_Fields_Mapping__c objCaseOutbound9 = new HM_Case_Fields_Mapping__c(
+	Name = 'customer.last',
+    HM_API_Sub_Object_Name__c = 'customer',
+    HM_SF_Object__c = 'Contact',
+    HM_SF_Field__c = 'Contact.LastName');
+lstCaseOutbound.add(objCaseOutbound9);
+
+HM_Case_Fields_Mapping__c objCaseOutbound10 = new HM_Case_Fields_Mapping__c(
+	Name = 'customer.mobile',
+    HM_API_Sub_Object_Name__c = 'customer',
+    HM_SF_Object__c = 'Contact',
+    HM_SF_Field__c = 'Contact.MobilePhone');
+lstCaseOutbound.add(objCaseOutbound10);
+
+HM_Case_Fields_Mapping__c objCaseOutbound11 = new HM_Case_Fields_Mapping__c(
+	Name = 'languagePreference',
+    HM_API_Sub_Object_Name__c = '',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'HM_Text_Language__c');
+lstCaseOutbound.add(objCaseOutbound11);
+
+HM_Case_Fields_Mapping__c objCaseOutbound12 = new HM_Case_Fields_Mapping__c(
+	Name = 'primaryContact.email',
+    HM_API_Sub_Object_Name__c = 'primaryContact',
+    HM_SF_Object__c = 'Owner',
+    HM_SF_Field__c = 'Owner.Email');
+lstCaseOutbound.add(objCaseOutbound12);
+
+HM_Case_Fields_Mapping__c objCaseOutbound13 = new HM_Case_Fields_Mapping__c(
+	Name = 'primaryContact.first',
+    HM_API_Sub_Object_Name__c = 'primaryContact',
+    HM_SF_Object__c = 'Owner',
+    HM_SF_Field__c = 'Owner.FirstName');
+lstCaseOutbound.add(objCaseOutbound13);
+
+HM_Case_Fields_Mapping__c objCaseOutbound14 = new HM_Case_Fields_Mapping__c(
+	Name = 'primaryContact.last',
+    HM_API_Sub_Object_Name__c = 'primaryContact',
+    HM_SF_Object__c = 'Owner',
+    HM_SF_Field__c = 'Owner.LastName');
+lstCaseOutbound.add(objCaseOutbound14);
+
+HM_Case_Fields_Mapping__c objCaseOutbound15 = new HM_Case_Fields_Mapping__c(
+	Name = 'privacy',
+    HM_API_Sub_Object_Name__c = '',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'HM_Case_Privacy__c');
+lstCaseOutbound.add(objCaseOutbound15);
+
+HM_Case_Fields_Mapping__c objCaseOutbound16 = new HM_Case_Fields_Mapping__c(
+	Name = 'statusDescription',
+    HM_API_Sub_Object_Name__c = '',
+    HM_SF_Object__c = '',
+    HM_SF_Field__c = 'Status');
+lstCaseOutbound.add(objCaseOutbound16);
+upsert lstCaseOutbound Name;

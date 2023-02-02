@@ -1,0 +1,61 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-spinner if:true={isLoading} alternative-text="Loading..." size="medium"></lightning-spinner>
+    <div style="max-width: 40rem;">
+        <div style="padding-bottom:10px;padding-top:8px;border-bottom:2px;border-bottom-style: solid;border-bottom-color: #f3f3f3;" class="slds-align_absolute-center">
+            <lightning-input variant="label-hidden" style="width: 60%" onchange={handleKeyChange}
+                placeholder="Search by template name..." class="inputBox" type="search">
+                <!-- onkeypress={handleEnter}-->
+            </lightning-input>
+        </div>
+        <!--lightning-button variant="brand-outline" class="slds-badge_lightest" label="Search"
+                    onclick={handleSearch} style="cursor: pointer;"></lightning-button-->
+        <div class="slds-scrollable_y" style="height:320px;" if:true={MatchingTemplatesFound}>
+            <fieldset class="slds-form-element">
+                <div class="slds-form-element__control"><br>
+                    <div class="slds-visual-picker slds-visual-picker_vertical"
+                        style="padding:around-x-small; --lwc-sizeLarge: rem;" key={smstemp.TemplateId}
+                        for:each={lstAllTemplates} for:item="smstemp">
+                        <input type="radio" id={smstemp.TemplateId} value={smstemp.TemplateId} name="SMS-temp-1"
+                            onclick={handleRadioSelect} />
+                        <label for={smstemp.TemplateId}>
+                            <span class="slds-visual-picker__figure slds-visual-picker__text">
+                                <!--slds-align_absolute-center-->
+                                <span>
+                                    <span class="slds-text-heading_small slds-m-bottom_x-small">
+                                        <font style="font-weight:500;">{smstemp.TemplateName}</font>
+                                    </span>
+                                    <span class="slds-text-title">{smstemp.Body}</span>
+                                </span>
+                            </span>
+                            <span class="slds-icon_container slds-visual-picker__text-check">
+                                <svg class="slds-icon slds-icon-text-check slds-icon_x-small" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#check"></use>
+                                </svg>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        <div if:true={ZeroMatchingTemplate} style="height:320px;" class="slds-align_absolute-center">
+            <p>No Matching Templates Found</p>
+        </div>
+
+        <div class="slds-modal__footer">
+            <!--div class="demo-only slds-scrollable_y slds-text-color_inverse slds-text-align_left slds-text-font_monospace">
+                <strong>
+                    <font color="black">{UpdatedTemplateBody}</font>
+                </strong>
+            </div-->
+            <div style="padding: 0.5rem;" class="slds-text-align_right">
+                <lightning-button class="slds-badge_lightest" label="Cancel"
+                    style="cursor: pointer;" onclick={closeSectionModal}></lightning-button>&nbsp;&nbsp;&nbsp;
+                <lightning-button variant="brand" class="slds-badge_lightest" label="Use Template"
+                    onclick={handleOnUseTemplateSelect} style="cursor: pointer;" disabled={DisableSelect}></lightning-button>
+            </div>
+        </div>
+    </div>
+</template>
